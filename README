@@ -1,0 +1,16 @@
+## Overview
+
+The rover runs its onboard code automatically on power-up, handling data collection and basic navigation. Once the companion app is connected, you can begin transmitting control signals to the rover.
+
+## Obstacle Avoidance
+
+The rover is equipped with an automatic safety routine that overrides incoming commands when an obstacle is detected. If either the **LIDAR** or **ultrasonic sensor** registers an object within **0.5 meters** of the front of the rover, the following sequence is triggered:
+
+1. The rover stops accepting incoming signals from the app.
+2. It reverses for **3 seconds** to create distance from the obstacle.
+3. Both sensors log their last recorded distance readings.
+4. The onboard camera captures a photo of the detected obstacle.
+
+## Dataset & Classification Model
+
+The data captured during these avoidance events (sensor readings + obstacle images) is intended to train a **classification model** for identifying obstacle types. Due to time constraints, we were unable to implement the model ourselves — instead, we've provided a pre-collected **dataset** that can be used to train one.
